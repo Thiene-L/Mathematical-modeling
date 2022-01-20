@@ -13,8 +13,6 @@ n_ri = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
 
 # 给出对象数目
 n = array.shape[0]
-# 给出矩阵纬度
-dim = array.ndim
 # 给出矩阵特征值
 eigenvalue = np.linalg.eig(array)[0]
 print(eigenvalue)
