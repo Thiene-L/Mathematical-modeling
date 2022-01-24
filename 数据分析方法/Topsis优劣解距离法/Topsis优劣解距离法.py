@@ -1,24 +1,25 @@
 import numpy as np
 import xlrd
 import pandas as pd
+import openpyxl
 
 
 # 从excel文件中读取数据
 def read(file):
     # 打开文件
-    wb = xlrd.open_workbook(filename=file)
+    wb = openpyxl.load_workbook(filename=file)
     # 通过索引获取表格
-    sheet = wb.sheet_by_index(0)
+    sheet = wb["Sheet1"]
     # 获取行数
-    rows = sheet.nrows
+    rows = sheet.max_row
     # 存放读取的数据
     all_content = []
-    # 取第1~第4列对的数据
-    for j in range(1, 5):
+    # 取第2~第5列的数据
+    for j in range(2, 6):
         temp = []
-        for i in range(1, rows):
+        for i in range(2, rows + 1):
             # 获取数据
-            cell = sheet.cell_value(i, j)
+            cell = int(sheet.cell(row=i, column=j).value)
             temp.append(cell)
         # 按列添加到结果集中
         all_content.append(temp)
@@ -88,7 +89,7 @@ def matrixTrans_2(answer2):
 
 
 def main():
-    file = "river.xlsx"
+    file = "/Users/mark/建模课程/数据分析方法/Topsis优劣解距离法/river.xlsx"
     # 读取文件
     answer1 = read(file)
     answer2 = []
@@ -118,7 +119,7 @@ def main():
     data = pd.DataFrame(answer4)
 
     # 将得分输出到excel表格中
-    writer = pd.ExcelWriter("Result.xlsx")  # 写入Excel文件
+    writer = pd.ExcelWriter("/Users/mark/建模课程/数据分析方法/Topsis优劣解距离法/result.xlsx")  # 写入Excel文件
     data.to_excel(writer, 'page_1', float_format='%.5f')  # ‘page_1’是写入excel的sheet名
     writer.save()
     writer.close()
