@@ -1,5 +1,4 @@
 import numpy as np
-import xlrd
 import pandas as pd
 import openpyxl
 
