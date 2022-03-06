@@ -23,7 +23,7 @@ max_eigenvalue = max(list(map(abs, eigenvalue)))
 # 计算CI
 ci = (max_eigenvalue - n) / (n - 1)
 # 计算CR
-cr = ((max_eigenvalue - n) / (n - 1)) / n_ri[1][n - 1]
+cr = ci / n_ri[1][n - 1]
 
 # 判断一致性是否通过
 if cr > max_cr:
