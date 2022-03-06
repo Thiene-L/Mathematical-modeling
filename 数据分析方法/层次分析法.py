@@ -20,6 +20,8 @@ n = array.shape[0]
 eigenvalue, eigenvector = np.linalg.eig(array)
 # 给出矩阵最大特征值
 max_eigenvalue = max(list(map(abs, eigenvalue)))
+# 计算CI
+ci = (max_eigenvalue - n) / (n - 1)
 # 计算CR
 cr = ((max_eigenvalue - n) / (n - 1)) / n_ri[1][n - 1]
 
